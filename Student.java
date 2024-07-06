@@ -23,10 +23,6 @@ public class Student{
         this.password = password;
         allStudents.put(id , this);
     }
-    //TODO
-    public static String checkPassword(String password){
-        return "";
-    }
 
     public static Student convertToStudent(String l) {
         String[] s = l.split("-");

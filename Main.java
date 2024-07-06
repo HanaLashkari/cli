@@ -415,12 +415,8 @@ public class Main {
             }
             s.addCourse(c);
             c.addStudent(s);
-            FileWriter writer1 = new FileWriter("C:\\Users\\Asus\\Desktop\\project\\studentOfCourse\\course"+c.getCode()+".txt" , true);
-            writer1.write(Student.convertToString(s));
-            writer1.close();
-            FileWriter writer2 = new FileWriter("C:\\Users\\Asus\\Desktop\\project\\courseOfStudent\\student"+s.getId()+".txt",true);
-            writer2.write(Course.convertToString(c));
-            writer2.close();
+            DataBase.add(new File("C:\\Users\\Asus\\Desktop\\project\\studentOfCourse\\course"+c.getCode()+".txt") , Student.convertToString(s) , true);
+            DataBase.add(new File("C:\\Users\\Asus\\Desktop\\project\\courseOfStudent\\student"+s.getId()+".txt") , Course.convertToString(c) , true);
         }catch (Exception e){
             e.printStackTrace();
         }
