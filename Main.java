@@ -1130,6 +1130,7 @@ public class Main {
             writer.write(id + "-"+grade);
         else  writer.write("\n" + id + "-" +grade);
         writer.close();
+        DataBase.add(new File("C:\\Users\\Asus\\Desktop\\project\\gradeOfstudent\\student" + id + ".txt") , code+"-"+grade , true );
     }
     private static void allGrades(int code){
         Path p = Path.of("C:\\Users\\Asus\\Desktop\\project\\gradeOfstudentForcourse\\course" + code + ".txt");
