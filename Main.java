@@ -127,10 +127,12 @@ public class Main {
             String name = scan.nextLine();
             System.out.println("-Code Of Course : ");
             int codeOfCourse = scan.nextInt();
-            System.out.println("-DeadLine(Example : 1403/01/05) : ");
+            System.out.println("-DeadLine and Estimated Time(Example : 1403/01/05,15:30,5(hour) : ");
             scan.nextLine();
             String deadline = scan.nextLine();
-            s = name + "-" + codeOfCourse + "-" + deadline + "-" + typeOfAssignment;
+            System.out.println("-Description : ");
+            String description = scan.nextLine();
+            s = name + "-" + codeOfCourse + "-" + deadline + "-" + typeOfAssignment + "-" + description;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -770,12 +772,14 @@ public class Main {
                 Course c = Course.convertToCourse(course);
                 coursesAll.add(c);
                 for(String assignment : assignments){
+                    System.out.println(assignment);
                     Assignment a = Assignment.convertToAssignment(assignment , typeOfAssignment);
                     if(a.getCourse().getCode().equals(c.getCode())){
                         a.setCourse(c);
                         c.addAssignment(a);
                         p = Paths.get("C:\\Users\\Asus\\Desktop\\project\\assignmentOfcourse\\course"+c.getCode()+".txt");
-                        DataBase.add(p.toFile() , Assignment.convertToString(a) , false);
+                        if(!DataBase.checkOut(p.toFile() , Assignment.convertToString(a)))
+                            DataBase.add(p.toFile() , Assignment.convertToString(a), true);
                     }
                 }
             }
@@ -784,15 +788,17 @@ public class Main {
                 List<String> strs = Files.readAllLines(p1);
                 for (String s : strs) {
                     Student student = Student.convertToStudent(s);
-                    System.out.println(" student = " + s);
                     p = Paths.get("C:\\Users\\Asus\\Desktop\\project\\assignmetOfstudent\\student" + student.getId() + ".txt");
                     for(Assignment a : c.getAssignments()) {
-                        DataBase.add(p.toFile() , Assignment.convertToString(a) , false);
+                        if(!DataBase.checkOut(p.toFile() , Assignment.convertToString(a)))
+                            DataBase.add(p.toFile() , Assignment.convertToString(a), true);
                     }
                 }
                 p = Paths.get("C:\\Users\\Asus\\Desktop\\project\\assignmentOfteacher\\teacher" + c.getProfessor().getId() + ".txt");
                 for(Assignment a : c.getAssignments()) {
-                    DataBase.add(p.toFile() , Assignment.convertToString(a) , false);}
+                    if (!DataBase.checkOut(p.toFile(), Assignment.convertToString(a)))
+                        DataBase.add(p.toFile(), Assignment.convertToString(a), true);
+                }
             }
 
         }catch (Exception e){

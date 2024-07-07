@@ -7,7 +7,7 @@ public class Assignment {
     public String getName() {
         return name;
     }
-
+    private String description;
     private String name;
     private Course course;
     private String deadLine;
@@ -16,11 +16,12 @@ public class Assignment {
     private static List<Assignment> assignments = new ArrayList<>();
     private Map<Student, Double> grades = new HashMap<>();
 
-    public Assignment(String name ,Course course , String deadLine , TypeOfAssignment typeOfAssignment) {
+    public Assignment(String name ,Course course , String deadLine , TypeOfAssignment typeOfAssignment , String description) {
         this.name = name;
         this.course = course;
         this.deadLine = deadLine;
         this.typeOfAssignment = typeOfAssignment;
+        this.description = description;
     }
 
     public void setCourse(Course course) {
@@ -40,12 +41,12 @@ public class Assignment {
             System.out.println("The course for this assignment doesn't exist.");
             return  null;
         }
-        Assignment t = new Assignment(s[0] , c , s[2] , typeOfAssignment);
+        Assignment t = new Assignment(s[0] , c , s[2] , typeOfAssignment , s[4]);
         return t;
     }
 
     public static String convertToString(Assignment t){
-        return t.name + "-" + t.getCourse().getCode() + "-" + t.getDeadLine() + "-" + t.getTypeOfAssignment();
+        return t.name + "-" + t.getCourse().getCode() + "-" + t.getDeadLine() + "-" + t.getTypeOfAssignment() + "-" + t.description;
     }
 
     public void setGradesByStudent(Student student, Double grade) {
