@@ -62,12 +62,12 @@ public class Main {
         return scan.nextInt();
     }
     private static int partCourseByAdmin() {
-        System.out.println("What do you want to do?\n1)Add Course\n2)Remove Course\n3)List Of Courses");
+        System.out.println("What do you want to do?\n1)Add Course\n2)Remove Course\n3)List Of Courses\n4)Set Exam");
         return scan.nextInt();
     }
     private static int partCourseByTeacher() {
         System.out.println("What do you want to do?\n1)Add Course\n2)Remove Course\n3)Add Student To Course\n" +
-                "4)List Of Courses\n5)Remove Student From Course");
+                "4)List Of Courses\n5)Remove Student From Course\n6)Set Exam");
         return scan.nextInt();
     }
     private static int partAssignmentByAdmin() {
@@ -591,6 +591,12 @@ public class Main {
                     s = scan.nextLine();
                 break;
             }
+            case 4 :{
+                clean();
+                System.out.println("Enter the code of course : ");
+                setExam(scan.nextInt());
+                break;
+            }
         }
     }
     private static void assignmentAffairs(int respond){
@@ -1032,6 +1038,12 @@ public class Main {
                     s = scan.nextLine();
                 break;
             }
+            case 6 :{
+                clean();
+                System.out.println("Enter the code of course : ");
+                setExam(scan.nextInt());
+                break;
+            }
         }
     }
     private static void assignmentAccess(int respond){
@@ -1156,6 +1168,10 @@ public class Main {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static void setExam(int code){
+        DataBase.add(Paths.get("C:\\Users\\Asus\\Desktop\\project\\Exams.txt").toFile() , String.valueOf(code), true);
     }
 
     public static void main(String[] args) throws Exception {
